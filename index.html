@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derek J. Hunt's Portfolio</title>
+    <!-- Tailwind CSS is loaded from a CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import a custom font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            /* A dark background to make the animated tiles visible */
+            background-color: #0d1117; 
+            color: #ffffff; /* Set a default text color for the body */
+        }
+        .container {
+            max-width: 960px;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+    </style>
+    <!-- We're adding the jsPDF and html2canvas libraries from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="flex flex-col items-center p-8">
+    <!-- The canvas element for the animated background -->
+    <canvas id="background-canvas" class="fixed inset-0 w-full h-full -z-10"></canvas>
+    
+    <!-- Add a button to trigger the PDF download -->
+    <div class="w-full text-center mb-6 z-20">
+        <button id="download-pdf-btn" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300">
+            Download PDF
+        </button>
+    </div>
+
+    <!-- Wrap all content to be converted in a main tag with a unique ID -->
+    <main id="portfolio-content" class="relative z-10 w-full container flex flex-col items-center">
+        <!-- Header Section -->
+        <header class="w-full text-center my-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2 text-white">Derek J. Hunt's Portfolio</h1>
+            <p class="text-lg text-gray-300">Web Developer & Creative Problem Solver</p>
+        </header>
+
+        <!-- About Section -->
+        <section id="about" class="w-full bg-slate-800 bg-opacity-70 rounded-lg shadow-lg p-8 mb-12 text-white">
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                <img src="profpic.jpg" alt="Derek J. Hunt's profile picture" class="profile-img rounded-full border-4 border-blue-500 shadow-md md:mr-8">
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl font-bold mb-2">Hello, I'm Derek!</h2>
+                    <p class="leading-relaxed text-gray-300">
+                        I am a web developer with a passion for creating clean, functional, and user-friendly websites. I am constantly learning and exploring new technologies to build projects that solve real-world problems. In this portfolio, you'll find examples of my work, demonstrating my skills in HTML, CSS, and JavaScript.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="w-full bg-slate-800 bg-opacity-70 rounded-lg shadow-lg p-8 mb-12 text-white">
+            <h2 class="text-2xl font-bold text-center mb-4">My Skills</h2>
+            <p class="text-center mb-6 text-gray-300">Here are a few of the skills I bring to the table:</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <!-- Skill Tile: Generative AI -->
+                <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
+                    <span>✨</span>
+                    <span>Generative AI</span>
+                </a>
+                <!-- Skill Tile: JavaScript -->
+                <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
+                    <span>📜</span>
+                    <span>JavaScript</span>
+                </a>
+                <!-- Skill Tile: Python -->
+                <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
+                    <span>🐍</span>
+                    <span>Python</span>
+                </a>
+                <!-- Skill Tile: Teaching & Mentoring -->
+                <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
+                    <span>👨‍🏫</span>
+                    <span>Teaching & Mentoring</span>
+                </a>
+                <!-- Skill Tile: Project Management -->
+                <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
+                    <span>📋</span>
+                    <span>Project Management</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="w-full container mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">My Projects</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="bg-slate-800 bg-opacity-70 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-2">Portfolio Landing Page</h3>
+                    <p class="mb-4 text-gray-300">
+                        This is a simple yet professional landing page that serves as the gateway to all of my work.
+                    </p>
+                    <a href="https://shiny-journey-jjwgxgrqvqwvcq7g9-8000.app.github.dev/" target="_blank" class="text-blue-500 hover:text-blue-300 font-semibold">View Project →</a>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="bg-slate-800 bg-opacity-70 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-2">2nd Project TBA</h3>
+                    <p class="mb-4 text-gray-300">
+                        N/A.
+                    </p>
+                    <a href="#" class="text-blue-500 hover:text-blue-300 font-semibold">View Project →</a>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="bg-slate-800 bg-opacity-70 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-2">3rd Project TBA</h3>
+                    <p class="mb-4 text-gray-300">
+                        N/A
+                    </p>
+                    <a href="#" class="text-blue-500 hover:text-blue-300 font-semibold">View Project →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="w-full container text-center text-sm mt-auto py-6 text-gray-400">
+            <p>&copy; 2025 Derek J. Hunt. All rights reserved.</p>
+            <div class="mt-2 space-x-4">
+                <a href="https://www.linkedin.com/in/derek-hunt-73867a73/" target="_blank" class="hover:text-blue-300">LinkedIn</a>
+                <a href="#" class="hover:text-blue-300">GitHub</a>
+                <a href="#" class="hover:text-blue-300">Email</a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- JavaScript to handle the PDF generation -->
+    <script>
+        const downloadBtn = document.getElementById('download-pdf-btn');
+        const content = document.getElementById('portfolio-content');
+
+        downloadBtn.addEventListener('click', () => {
+            // Options for html2canvas to ensure good quality
+            const options = {
+                scale: 2, // Higher scale for better resolution
+                useCORS: true // Required if you're using images from external sources
+            };
+
+            // Use html2canvas to render the content as an image
+            html2canvas(content, options).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jspdf.jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('Derek_Hunt_Portfolio.pdf');
+            });
+        });
+    </script>
+
+    <!-- JavaScript for the animated background -->
+    <script>
+        window.onload = function() {
+            const canvas = document.getElementById('background-canvas');
+            const ctx = canvas.getContext('2d');
+            let tiles = [];
+            const tileSize = 40; // The size of each square tile
+            const pulseSpeed = 0.005; // How fast the tiles fade
+
+            function setupCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                tiles = [];
+                for (let x = 0; x < canvas.width; x += tileSize) {
+                    for (let y = 0; y < canvas.height; y += tileSize) {
+                        tiles.push({
+                            x: x,
+                            y: y,
+                            opacity: Math.random(), // Start with a random opacity
+                            direction: Math.random() < 0.5 ? 1 : -1 // Fade in or out
+                        });
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                tiles.forEach(tile => {
+                    tile.opacity += tile.direction * pulseSpeed;
+                    if (tile.opacity > 1 || tile.opacity < 0) {
+                        tile.direction *= -1; // Reverse direction
+                    }
+
+                    // A subtle, dark blue-gray color for the tiles
+                    const baseColor = [30, 41, 59]; // slate-800
+                    ctx.fillStyle = `rgba(${baseColor[0]}, ${baseColor[1]}, ${baseColor[2]}, ${tile.opacity})`;
+                    ctx.fillRect(tile.x, tile.y, tileSize - 1, tileSize - 1);
+                });
+                requestAnimationFrame(animate);
+            }
+
+            // Initial setup
+            setupCanvas();
+            animate();
+
+            // Handle window resizing
+            window.addEventListener('resize', setupCanvas);
+        };
+    </script>
+</body>
+</html>
