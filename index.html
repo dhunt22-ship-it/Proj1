@@ -7,21 +7,11 @@
     <!-- Tailwind CSS is loaded from a CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
-    <!-- We're adding the jsPDF and html2canvas libraries from a CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body class="flex flex-col items-center p-8">
     <!-- The canvas element for the animated background -->
     <canvas id="background-canvas" class="fixed inset-0 w-full h-full -z-10"></canvas>
     
-    <!-- Add a button to trigger the PDF download -->
-    <div class="w-full text-center mb-6 z-20">
-        <button id="download-pdf-btn" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300">
-            Download PDF
-        </button>
-    </div>
-
     <!-- Wrap all content to be converted in a main tag with a unique ID -->
     <main id="portfolio-content" class="relative z-10 w-full container flex flex-col items-center">
         <!-- Header Section -->
@@ -33,7 +23,7 @@
         <!-- About Section -->
         <section id="about" class="w-full bg-slate-800 bg-opacity-70 rounded-lg shadow-lg p-8 mb-12 text-white">
             <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                <img src="profpic.jpg" alt="Derek J. Hunt's profile picture" class="profile-img rounded-full border-4 border-blue-500 shadow-md md:mr-8">
+                <img src="20250918_085229.jpg" alt="Derek J. Hunt's profile picture" class="profile-img rounded-full border-4 border-blue-500 shadow-md md:mr-8">
                 <div class="text-center md:text-left">
                     <h2 class="text-2xl font-bold mb-2">Hello, I'm Derek!</h2>
                     <p class="leading-relaxed text-gray-300">
@@ -63,11 +53,11 @@
                     <span>🐍</span>
                     <span>Python</span>
                 </a>
-                <!-- Skill Tile: Business Development -->
-                <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
-                    <span>�</span>
-                    <span>Business Development</span>
-                </a>
+                    <!-- Skill Tile: Business Development -->
+                    <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
+                        <span>🏢</span>
+                        <span>Business Development</span>
+                    </a>
                 <!-- Skill Tile: Project Management -->
                 <a href="#" class="bg-gray-700 bg-opacity-60 text-white px-6 py-2 rounded-full shadow-md flex items-center space-x-2 transition-transform duration-200 hover:scale-105">
                     <span>📋</span>
@@ -100,11 +90,11 @@
                 
                 <!-- Project Card 3 -->
                 <div class="bg-slate-800 bg-opacity-70 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                    <h3 class="text-xl font-bold mb-2">3rd Project TBA</h3>
+                    <h3 class="text-xl font-bold mb-2">Additional functions for Intel's site</h3>
                     <p class="mb-4 text-gray-300">
-                        N/A
+                        This is a simple yet professional landing page that serves as the gateway to all of my work.
                     </p>
-                    <a href="#" class="text-blue-500 hover:text-blue-300 font-semibold">View Project →</a>
+                    <a href="https://dhunt22-ship-it.github.io/Arabic-Version/" target="_blank" class="text-blue-500 hover:text-blue-300 font-semibold">View Project →</a>
                 </div>
             </div>
         </section>
@@ -119,36 +109,6 @@
             </div>
         </footer>
     </main>
-
-    <!-- JavaScript to handle the PDF generation -->
-    <script>
-        const downloadBtn = document.getElementById('download-pdf-btn');
-        const content = document.getElementById('portfolio-content');
-
-        downloadBtn.addEventListener('click', () => {
-            // Options for html2canvas to ensure good quality
-            const options = {
-                scale: 2, // Higher scale for better resolution
-                useCORS: true // Required if you're using images from external sources
-            };
-
-            // Use html2canvas to render the content as an image
-            html2canvas(content, options).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jspdf.jsPDF({
-                    orientation: 'portrait',
-                    unit: 'mm',
-                    format: 'a4'
-                });
-                const imgProps = pdf.getImageProperties(imgData);
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('Derek_Hunt_Portfolio.pdf');
-            });
-        });
-    </script>
 
     <!-- JavaScript for the animated background -->
     <script>
