@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Derek J. Hunt's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .snap-pop-card { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease; border: 1px solid rgba(51, 65, 85, 0.5); }
+        .snap-pop-card:hover { transform: scale(1.04) translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4); border-color: #3b82f6; }
+        .snap-pop-card-featured { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease; border: 1px solid rgba(99, 102, 241, 0.4); }
+        .snap-pop-card-featured:hover { transform: scale(1.05) translateY(-4px); box-shadow: 0 20px 30px -5px rgba(16, 185, 129, 0.3); border-color: #10b981; }
+    </style>
 </head>
 <body class="bg-slate-900 flex flex-col items-center p-8 min-h-screen text-slate-100">
     <canvas id="background-canvas" class="fixed inset-0 w-full h-full -z-10"></canvas>
-    
     <main id="portfolio-content" class="relative z-10 w-full container flex flex-col items-center max-w-6xl">
         
         <header class="w-full text-center my-12">
@@ -31,22 +35,10 @@
         <section id="skills" class="w-full bg-slate-800/60 backdrop-blur-md rounded-xl shadow-xl p-8 mb-12 border border-slate-700/50">
             <h2 class="text-2xl font-bold text-center mb-8 text-white">Technical Skills & Core Competencies</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
-                    <h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Languages & Frameworks</h3>
-                    <div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2 py-1 rounded">JS/TS</span><span class="bg-slate-800 text-xs px-2 py-1 rounded">React</span><span class="bg-slate-800 text-xs px-2 py-1 rounded">Next.js</span></div>
-                </div>
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
-                    <h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Cloud & DevOps</h3>
-                    <div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2 py-1 rounded">AWS</span><span class="bg-slate-800 text-xs px-2 py-1 rounded">Cloudflare</span><span class="bg-slate-800 text-xs px-2 py-1 rounded">Linux</span></div>
-                </div>
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
-                    <h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Databases & Analytics</h3>
-                    <div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2 py-1 rounded">PostgreSQL</span><span class="bg-slate-800 text-xs px-2 py-1 rounded">MySQL</span></div>
-                </div>
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
-                    <h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Design & Strategy</h3>
-                    <div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2 py-1 rounded">AI/Agentic</span><span class="bg-slate-800 text-xs px-2 py-1 rounded">Figma</span></div>
-                </div>
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Languages & Frameworks</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">JS (ES6+)</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">TypeScript</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">React</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Next.js</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Python</span></div></div>
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Cloud & DevOps</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">AWS</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Cloudflare</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Git</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Linux</span></div></div>
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Databases</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">PostgreSQL</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">MySQL</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Data Modeling</span></div></div>
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Design & Strategy</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Agentic AI</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Figma</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Agile</span></div></div>
             </div>
         </section>
 
@@ -54,26 +46,25 @@
             <h2 class="text-3xl font-bold text-center mb-8 text-white">My Projects</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full mb-8">
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl">Project 1</div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl">Project 2</div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl">Project 3</div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl">Project 4</div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl">Project 5</div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl">Project 6</div>
+                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Intel Sustainability</h3><a href="https://dhunt22-ship-it.github.io/02-prj-intel-sustainability/">View Project →</a></div>
+                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>L'Oréal AI Chatbot</h3><a href="https://dhunt22-ship-it.github.io/08-prj-loreal-chatbot/">View Project →</a></div>
+                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>NASA Explorer v2</h3><a href="https://dhunt22-ship-it.github.io/09-nasa-space-explorer-v2/">View Project →</a></div>
+                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Routine Builder</h3><a href="https://dhunt22-ship-it.github.io/09-prj-loreal-routine-builder/">View Project →</a></div>
+                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Charity Water</h3><a href="https://dhunt22-ship-it.github.io/Project-charity-water-Game-Prototype/">View Project →</a></div>
+                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Intel Expansion</h3><a href="https://dhunt22-ship-it.github.io/Arabic-Version/">View Project →</a></div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="snap-pop-card-featured bg-slate-800/80 p-6 rounded-xl border border-indigo-500/30">
-                    <h3 class="font-bold text-white mb-2">📈 Stock Picker App</h3>
-                    <a href="https://the-last-stock-picker.streamlit.app/" target="_blank" class="text-emerald-400 font-semibold">Launch Live App →</a>
+                <div class="snap-pop-card-featured bg-slate-800/80 p-6 rounded-xl border-indigo-500/30">
+                    <h3 class="font-bold text-white">📈 Stock Picker App</h3>
+                    <a href="https://the-last-stock-picker.streamlit.app/" class="text-emerald-400">Launch Live App →</a>
                 </div>
-                <div class="snap-pop-card-featured bg-slate-800/80 p-6 rounded-xl border border-emerald-500/30">
-                    <h3 class="font-bold text-white mb-2">⚡ 1CALL CRM Cockpit</h3>
-                    <a href="https://1call-crm-od63.vercel.app/" target="_blank" class="text-emerald-400 font-semibold">Launch Live App →</a>
+                <div class="snap-pop-card-featured bg-slate-800/80 p-6 rounded-xl border-emerald-500/30">
+                    <h3 class="font-bold text-white">⚡ 1CALL CRM Cockpit</h3>
+                    <a href="https://1call-crm-od63.vercel.app/" class="text-emerald-400">Launch Live App →</a>
                 </div>
             </div>
         </section>
     </main>
-    
-    </body>
+</body>
 </html>
