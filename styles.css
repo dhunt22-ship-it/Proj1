@@ -1,11 +1,10 @@
-/* Import a custom font from Google Fonts */
+/* Import fonts and base resets */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 body {
     font-family: 'Inter', sans-serif;
-    /* A dark background to make the animated tiles visible */
     background-color: #0d1117; 
-    color: #ffffff; /* Set a default text color for the body */
+    color: #ffffff;
 }
 
 .container {
@@ -16,4 +15,26 @@ body {
     width: 150px;
     height: 150px;
     object-fit: cover;
+}
+
+/* Snap & Pop Animations */
+.snap-pop-card {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    border: 1px solid rgba(51, 65, 85, 0.5);
+}
+.snap-pop-card:hover {
+    transform: scale(1.04) translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    border-color: #3b82f6;
+}
+
+.snap-pop-card-featured {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.15);
+}
+.snap-pop-card-featured:hover {
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 20px 30px -5px rgba(16, 185, 129, 0.3), 0 10px 15px -5px rgba(0, 0, 0, 0.4);
+    border-color: #10b981;
 }
