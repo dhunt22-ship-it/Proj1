@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Derek J. Hunt's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .snap-pop-card { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease; border: 1px solid rgba(51, 65, 85, 0.5); }
-        .snap-pop-card:hover { transform: scale(1.04) translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4); border-color: #3b82f6; }
-        .snap-pop-card-featured { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease; border: 1px solid rgba(99, 102, 241, 0.4); }
-        .snap-pop-card-featured:hover { transform: scale(1.05) translateY(-4px); box-shadow: 0 20px 30px -5px rgba(16, 185, 129, 0.3); border-color: #10b981; }
-    </style>
 </head>
 <body class="bg-slate-900 flex flex-col items-center p-8 min-h-screen text-slate-100">
     <canvas id="background-canvas" class="fixed inset-0 w-full h-full -z-10"></canvas>
+    
     <main id="portfolio-content" class="relative z-10 w-full container flex flex-col items-center max-w-6xl">
         
         <header class="w-full text-center my-12">
@@ -24,47 +20,222 @@
 
         <section id="about" class="w-full bg-slate-800/60 backdrop-blur-md rounded-xl shadow-xl p-8 mb-12 border border-slate-700/50">
             <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
-                <img src="20250918_085229.jpg" alt="Profile" class="rounded-full border-4 border-blue-500 w-32 h-32 object-cover">
+                <img src="20250918_085229.jpg" alt="Derek J. Hunt's profile picture" class="profile-img rounded-full border-4 border-blue-500 shadow-lg w-32 h-32 object-cover shrink-0">
                 <div class="text-center md:text-left">
                     <h2 class="text-2xl font-bold mb-3 text-white">Hello, I'm Derek!</h2>
-                    <p class="text-slate-300 leading-relaxed">I am a web developer with a passion for creating clean, functional, and user-friendly websites. I am constantly learning and exploring new technologies to build projects that solve real-world problems.</p>
+                    <p class="leading-relaxed text-slate-300">
+                        I am a web developer with a passion for creating clean, functional, and user-friendly websites. I am constantly learning and exploring new technologies to build projects that solve real-world problems. In this portfolio, you'll find examples of my work, demonstrating my skills in HTML, CSS, and JavaScript.
+                    </p>
                 </div>
             </div>
         </section>
 
         <section id="skills" class="w-full bg-slate-800/60 backdrop-blur-md rounded-xl shadow-xl p-8 mb-12 border border-slate-700/50">
-            <h2 class="text-2xl font-bold text-center mb-8 text-white">Technical Skills & Core Competencies</h2>
+            <h2 class="text-2xl font-bold text-center mb-2 text-white">Technical Skills & Core Competencies</h2>
+            <p class="text-center mb-8 text-slate-400">Core engineering stack, cloud infrastructure, and methodologies:</p>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Languages & Frameworks</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">JS (ES6+)</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">TypeScript</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">React</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Next.js</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Python</span></div></div>
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Cloud & DevOps</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">AWS</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Cloudflare</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Git</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Linux</span></div></div>
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Databases</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">PostgreSQL</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">MySQL</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Data Modeling</span></div></div>
-                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40"><h3 class="text-sm font-semibold text-blue-400 uppercase mb-3">Design & Strategy</h3><div class="flex flex-wrap gap-2"><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Agentic AI</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Figma</span><span class="bg-slate-800 text-xs px-2.5 py-1 rounded">Agile</span></div></div>
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
+                    <h3 class="text-sm font-semibold tracking-wider text-blue-400 uppercase mb-3 flex items-center gap-2"><span>💻</span> Languages & Frameworks</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">JavaScript (ES6+)</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">TypeScript</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">React / React Native</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Next.js</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Node.js</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Python</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Java</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
+                    <h3 class="text-sm font-semibold tracking-wider text-blue-400 uppercase mb-3 flex items-center gap-2"><span>☁️</span> Cloud & DevOps</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">AWS Architecture</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Cloudflare Workers</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">RESTful APIs</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Git / GitHub</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Linux SysAdmin</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
+                    <h3 class="text-sm font-semibold tracking-wider text-blue-400 uppercase mb-3 flex items-center gap-2"><span>📊</span> Databases & Analytics</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">PostgreSQL</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">MySQL</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Data Modeling (ERDs)</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">ANOVA Testing</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Statistical Variance</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-700/40">
+                    <h3 class="text-sm font-semibold tracking-wider text-blue-400 uppercase mb-3 flex items-center gap-2"><span>⚙️</span> Design & Strategy</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Agentic AI Development</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Figma Prototyping</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">UX Journey Mapping</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Agile / Scrum</span>
+                        <span class="bg-slate-800 text-xs text-slate-200 px-2.5 py-1 rounded border border-slate-700">Cross-Team Leadership</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="projects" class="w-full mb-12">
             <h2 class="text-3xl font-bold text-center mb-8 text-white">My Projects</h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full mb-8">
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Intel Sustainability</h3><a href="https://dhunt22-ship-it.github.io/02-prj-intel-sustainability/">View Project →</a></div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>L'Oréal AI Chatbot</h3><a href="https://dhunt22-ship-it.github.io/08-prj-loreal-chatbot/">View Project →</a></div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>NASA Explorer v2</h3><a href="https://dhunt22-ship-it.github.io/09-nasa-space-explorer-v2/">View Project →</a></div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Routine Builder</h3><a href="https://dhunt22-ship-it.github.io/09-prj-loreal-routine-builder/">View Project →</a></div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Charity Water</h3><a href="https://dhunt22-ship-it.github.io/Project-charity-water-Game-Prototype/">View Project →</a></div>
-                <div class="snap-pop-card bg-slate-800/60 p-6 rounded-xl"><h3>Intel Expansion</h3><a href="https://dhunt22-ship-it.github.io/Arabic-Version/">View Project →</a></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="snap-pop-card-featured bg-slate-800/80 p-6 rounded-xl border-indigo-500/30">
-                    <h3 class="font-bold text-white">📈 Stock Picker App</h3>
-                    <a href="https://the-last-stock-picker.streamlit.app/" class="text-emerald-400">Launch Live App →</a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                
+                <div class="snap-pop-card bg-slate-800/60 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white">Intel's Sustainability</h3>
+                            <span class="text-xs bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">CSS</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">An interactive timeline webpage showcasing Intel’s global sustainability goals, metrics, and green initiatives.</p>
+                    </div>
+                    <a href="https://dhunt22-ship-it.github.io/02-prj-intel-sustainability/" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center mt-6 self-start transition-colors">View Project →</a>
                 </div>
-                <div class="snap-pop-card-featured bg-slate-800/80 p-6 rounded-xl border-emerald-500/30">
-                    <h3 class="font-bold text-white">⚡ 1CALL CRM Cockpit</h3>
-                    <a href="https://1call-crm-od63.vercel.app/" class="text-emerald-400">Launch Live App →</a>
+                
+                <div class="snap-pop-card bg-slate-800/60 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white">L'Oréal AI Chatbot</h3>
+                            <span class="text-xs bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">JavaScript</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">An AI concierge application using Cloudflare Workers and OpenAI APIs to handle intelligent routine consulting and parsing workflows.</p>
+                    </div>
+                    <a href="https://dhunt22-ship-it.github.io/08-prj-loreal-chatbot/" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center mt-6 self-start transition-colors">View Project →</a>
+                </div>
+                
+                <div class="snap-pop-card bg-slate-800/60 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white">NASA Space Explorer v2</h3>
+                            <span class="text-xs bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">JavaScript</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">A media-rich web application built to connect directly to the NASA API, rendering planetary pictures of the day inside custom layouts.</p>
+                    </div>
+                    <a href="https://dhunt22-ship-it.github.io/09-nasa-space-explorer-v2/" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center mt-6 self-start transition-colors">View Project →</a>
+                </div>
+
+                <div class="snap-pop-card bg-slate-800/60 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white">L'Oréal Routine Builder</h3>
+                            <span class="text-xs bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">JavaScript</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">A sleek web interface tailored for creating skincare and custom grooming schedules interactively.</p>
+                    </div>
+                    <a href="https://dhunt22-ship-it.github.io/09-prj-loreal-routine-builder/" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center mt-6 self-start transition-colors">View Project →</a>
+                </div>
+
+                <div class="snap-pop-card bg-slate-800/60 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white">Charity Water Prototype</h3>
+                            <span class="text-xs bg-rose-950 text-rose-300 px-2 py-0.5 rounded border border-rose-800">HTML</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">An interactive mini-game prototype built around non-profit awareness and donation loops.</p>
+                    </div>
+                    <a href="https://dhunt22-ship-it.github.io/Project-charity-water-Game-Prototype/" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center mt-6 self-start transition-colors">View Project →</a>
+                </div>
+
+                <div class="snap-pop-card bg-slate-800/60 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white">Intel Site Expansion</h3>
+                            <span class="text-xs bg-rose-950 text-rose-300 px-2 py-0.5 rounded border border-rose-800">HTML</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">An alternate localization module implementing right-to-left UI controls for Arabic system layouts.</p>
+                    </div>
+                    <a href="https://dhunt22-ship-it.github.io/Arabic-Version/" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center mt-6 self-start transition-colors">View Project →</a>
+                </div>
+
+                <div class="snap-pop-card-featured bg-slate-800/80 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2"><span>📈</span> Stock Picker App</h3>
+                            <span class="text-xs bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-800">Next.js / Streamlit</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">A high-performance algorithmic financial analysis tool configured to query data metrics and model optimal assets interactively.</p>
+                    </div>
+                    <a href="https://the-last-stock-picker-jpylkpfufzh29fb78uqbor.streamlit.app/" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center mt-6 self-start transition-colors">Launch Live App →</a>
+                </div>
+
+                <div class="snap-pop-card-featured bg-slate-800/80 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2"><span>⚡</span> 1CALL CRM Cockpit</h3>
+                            <span class="text-xs bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-800">Next.js / Vercel</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">A centralized CRM dashboard designed for optimized lead management, partner outreach, and workflow automation.</p>
+                    </div>
+                    <a href="https://1call-crm-od63.vercel.app/" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center mt-6 self-start transition-colors">Launch Live App →</a>
                 </div>
             </div>
         </section>
+
+        <footer class="w-full text-center text-sm mt-auto py-8 text-slate-500 border-t border-slate-800/80">
+            <p>&copy; 2026 Derek J. Hunt. All rights reserved.</p>
+            <div class="mt-3 space-x-6">
+                <a href="https://www.linkedin.com/in/derek-hunt-73867a73/" target="_blank" class="text-slate-400 hover:text-blue-400 transition-colors">LinkedIn</a>
+                <a href="https://github.com/dhunt22-ship-it" target="_blank" class="text-slate-400 hover:text-blue-400 transition-colors">GitHub</a>
+                <a href="mailto:Dhunt22@ASU.edu" class="text-slate-400 hover:text-blue-400 transition-colors">Email</a>
+            </div>
+        </footer>
     </main>
+
+    <script>
+        window.onload = function() {
+            const canvas = document.getElementById('background-canvas');
+            const ctx = canvas.getContext('2d');
+            let tiles = [];
+            const tileSize = 40; 
+            const pulseSpeed = 0.005; 
+
+            function setupCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                tiles = [];
+                for (let x = 0; x < canvas.width; x += tileSize) {
+                    for (let y = 0; y < canvas.height; y += tileSize) {
+                        tiles.push({
+                            x: x,
+                            y: y,
+                            opacity: Math.random(), 
+                            direction: Math.random() < 0.5 ? 1 : -1 
+                        });
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                tiles.forEach(tile => {
+                    tile.opacity += tile.direction * pulseSpeed;
+                    if (tile.opacity > 1 || tile.opacity < 0) {
+                        tile.direction *= -1; 
+                    }
+                    const baseColor = [30, 41, 59];
+                    ctx.fillStyle = `rgba(${baseColor[0]}, ${baseColor[1]}, ${baseColor[2]}, ${tile.opacity * 0.4})`; 
+                    ctx.fillRect(tile.x, tile.y, tileSize - 1, tileSize - 1);
+                });
+                requestAnimationFrame(animate);
+            }
+
+            setupCanvas();
+            animate();
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    setupCanvas();
+                }, 150);
+            });
+        };
+    </script>
 </body>
 </html>
