@@ -1,19 +1,34 @@
-/* Import a custom font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
 body {
-    font-family: 'Inter', sans-serif;
-    /* A dark background to make the animated tiles visible */
-    background-color: #0d1117; 
-    color: #ffffff; /* Set a default text color for the body */
+    background-color: #0b0e14;
+    color: #ffffff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 40px;
 }
 
-.container {
-    max-width: 960px;
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.profile-img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+.card {
+    background: #151c2c;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #232d42;
+}
+
+.tags span {
+    display: inline-block;
+    background: #1e293b;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+/* Row 4: Single card centered */
+.crm-card {
+    grid-column: 2 / 3; /* Places it in the center column */
 }
