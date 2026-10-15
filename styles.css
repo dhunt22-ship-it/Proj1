@@ -1,34 +1,128 @@
 body {
-    background-color: #0b0e14;
-    color: #ffffff;
+    background-color: #0f172a;
+    color: #f1f5f9;
     font-family: sans-serif;
     margin: 0;
-    padding: 40px;
 }
 
-.portfolio-container {
+.section-heading {
+    border-top: 1px solid #334155;
+    padding-top: 2rem;
+}
+
+.snap-pop-card,
+.snap-pop-card-featured {
+    border: 1px solid #334155;
+    box-shadow: 0 12px 30px #02061740;
+}
+
+.snap-pop-card-featured {
+    border-color: #059669;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 4px;
+}
+
+.request-page {
+    box-sizing: border-box;
+    max-width: 1152px;
+    margin: auto;
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+.request-page a {
+    color: #60a5fa;
+}
+
+.request-header {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.request-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.request-page p {
+    color: #cbd5e1;
+}
+
+.request-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
 }
 
-.card {
-    background: #151c2c;
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #232d42;
+.request-card {
+    padding: 2rem;
+    background: #1e293b99;
+    border: 1px solid #334155;
+    border-radius: 0.75rem;
+    box-shadow: 0 12px 30px #02061740;
 }
 
-.tags span {
-    display: inline-block;
-    background: #1e293b;
-    padding: 8px 12px;
-    margin: 5px;
-    border-radius: 6px;
-    font-size: 0.9em;
+.request-card h2 {
+    margin-top: 0;
 }
 
-/* Row 4: Single card centered */
-.crm-card {
-    grid-column: 2 / 3; /* Places it in the center column */
+.request-card label {
+    display: block;
+    font-weight: 600;
+    margin: 1rem 0 0.4rem;
+}
+
+.request-card input,
+.request-card textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.75rem;
+    color: #f1f5f9;
+    background: #0f172a;
+    border: 1px solid #64748b;
+    border-radius: 0.4rem;
+    font: inherit;
+}
+
+.request-card textarea {
+    resize: vertical;
+}
+
+.request-card button {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    background: #047857;
+    border: 1px solid #34d399;
+    border-radius: 0.4rem;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.request-card button:hover {
+    background: #065f46;
+}
+
+.request-note {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+    .request-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .request-page,
+    .request-card {
+        padding: 1.25rem;
+    }
 }
