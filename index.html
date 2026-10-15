@@ -6,6 +6,95 @@
     <title>Derek J. Hunt's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #projects .project-group + .project-group {
+            margin-top: 4rem;
+        }
+
+        #projects .project-heading {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        #projects .project-heading h2 {
+            margin: 0 0 1.25rem;
+            color: #f1f5f9;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: 0.025em;
+            text-wrap: balance;
+        }
+
+        #projects .project-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 44rem;
+            margin: 0 auto;
+            color: #60a5fa;
+        }
+
+        #projects .project-divider::before,
+        #projects .project-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #3b82f6);
+        }
+
+        #projects .project-divider::after {
+            transform: scaleX(-1);
+        }
+
+        #projects .snap-pop-card,
+        #projects .snap-pop-card-featured {
+            min-width: 0;
+            border: 1px solid #334e75;
+            background: linear-gradient(145deg, #1e293bee, #0f1e35ee);
+            box-shadow: 0 8px 24px #02061740;
+            transition: border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        #projects .snap-pop-card:hover,
+        #projects .snap-pop-card:focus-within,
+        #projects .snap-pop-card-featured:hover,
+        #projects .snap-pop-card-featured:focus-within {
+            border-color: #60a5fa;
+            box-shadow: 0 8px 28px #2563eb26;
+        }
+
+        #projects h3 {
+            line-height: 1.4;
+        }
+
+        #projects .snap-pop-card .items-start {
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        #projects h3 + span {
+            flex-shrink: 0;
+        }
+
+        #projects h3,
+        #projects p {
+            overflow-wrap: anywhere;
+        }
+
+        #projects .snap-pop-card-featured {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 1px #3b82f633, 0 12px 36px #02061766;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #projects .snap-pop-card,
+            #projects .snap-pop-card-featured {
+                transition: none;
+            }
+        }
+    </style>
 </head>
 <body class="bg-slate-900 flex flex-col items-center p-8 min-h-screen text-slate-100">
     <canvas id="background-canvas" class="fixed inset-0 w-full h-full -z-10"></canvas>
@@ -86,9 +175,13 @@
             </div>
         </section>
 
-        <section id="projects" class="w-full mb-12">
-            <h2 class="text-3xl font-bold text-center mb-8 text-white">My Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+        <div id="projects" class="w-full mb-12">
+            <section class="project-group" aria-labelledby="collaboration-heading">
+                <header class="project-heading">
+                    <h2 id="collaboration-heading">Collaboration Projects</h2>
+                    <div class="project-divider" aria-hidden="true">◆</div>
+                </header>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                 
                 <div class="snap-pop-card bg-slate-800/60 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full">
                     <div><div class="flex justify-between items-start mb-3"><h3 class="text-xl font-bold text-white">Intel's Sustainability</h3><span class="text-xs bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">CSS</span></div><p class="text-slate-300 text-sm leading-relaxed">An interactive timeline webpage showcasing Intel’s global sustainability goals, metrics, and green initiatives.</p></div>
@@ -120,10 +213,18 @@
                     <a href="https://dhunt22-ship-it.github.io/Arabic-Version/" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center mt-6 self-start transition-colors">View Project →</a>
                 </div>
 
-                <div class="col-span-1 md:col-span-3 flex justify-center">
-                    <div class="snap-pop-card-featured bg-slate-800/80 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between h-full max-w-sm w-full">
+            </div>
+            </section>
+
+            <section class="project-group" aria-labelledby="professional-heading">
+                <header class="project-heading">
+                    <h2 id="professional-heading">Current Professional Projects</h2>
+                    <div class="project-divider" aria-hidden="true">◆</div>
+                </header>
+                <div class="flex justify-center">
+                    <div class="snap-pop-card-featured bg-slate-800/80 backdrop-blur-md rounded-xl p-6 sm:p-8 flex flex-col justify-between h-full max-w-3xl w-full">
                         <div>
-                            <div class="flex justify-between items-start mb-3">
+                            <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
                                 <h3 class="text-xl font-bold text-white flex items-center gap-2"><span>⚡</span> 1CALL CIP Cockpit</h3>
                                 <span class="text-xs bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-800">Next.js / Vercel</span>
                             </div>
@@ -132,9 +233,8 @@
                         <a href="https://1call-crm-od63.vercel.app/" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center mt-6 self-start transition-colors">Launch Live App →</a>
                     </div>
                 </div>
-
-            </div>
-        </section>
+            </section>
+        </div>
 
         <footer class="w-full text-center text-sm mt-auto py-8 text-slate-500 border-t border-slate-800/80">
             <p>&copy; 2026 Derek J. Hunt. All rights reserved.</p>
