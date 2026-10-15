@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo / Interview — Derek J. Hunt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="request-page">
+        <a href="index.html">← Back to portfolio</a>
+        <header class="request-header">
+            <h1>Demo / Interview</h1>
+            <p>Request a private project walkthrough or get in touch about an interview.</p>
+        </header>
+
+        <div class="request-grid">
+            <section id="demo-request" class="request-card" aria-labelledby="demo-heading">
+                <h2 id="demo-heading">Demo Request</h2>
+                <p>Explore 1CALL CIP Cockpit or ask about another portfolio project. All fields are required unless marked optional.</p>
+                <form action="https://formsubmit.co/Dhunt22@ASU.edu" method="POST">
+                    <input type="hidden" name="_subject" value="Portfolio: Demo request">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="request_type" value="Demo">
+                    <input type="text" name="_honey" hidden tabindex="-1" autocomplete="off">
+
+                    <label for="demo-name">Name</label>
+                    <input id="demo-name" name="name" autocomplete="name" maxlength="150" required>
+                    <label for="demo-email">Email</label>
+                    <input id="demo-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+                    <label for="demo-company">Organization (optional)</label>
+                    <input id="demo-company" name="company" autocomplete="organization" maxlength="200">
+                    <label for="demo-message">Project and demo interests</label>
+                    <textarea id="demo-message" name="message" rows="5" maxlength="5000" required></textarea>
+                    <button type="submit">Send Demo Request →</button>
+                </form>
+            </section>
+
+            <section id="interview-request" class="request-card" aria-labelledby="interview-heading">
+                <h2 id="interview-heading">Interview Request</h2>
+                <p>Share the role and your preferred interview times, including your time zone. All fields are required.</p>
+                <form action="https://formsubmit.co/Dhunt22@ASU.edu" method="POST">
+                    <input type="hidden" name="_subject" value="Portfolio: Interview request">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="request_type" value="Interview">
+                    <input type="text" name="_honey" hidden tabindex="-1" autocomplete="off">
+
+                    <label for="interview-name">Name</label>
+                    <input id="interview-name" name="name" autocomplete="name" maxlength="150" required>
+                    <label for="interview-email">Email</label>
+                    <input id="interview-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+                    <label for="interview-company">Organization</label>
+                    <input id="interview-company" name="company" autocomplete="organization" maxlength="200" required>
+                    <label for="interview-message">Role and availability</label>
+                    <textarea id="interview-message" name="message" rows="5" maxlength="5000" required></textarea>
+                    <button type="submit">Send Interview Request →</button>
+                </form>
+            </section>
+        </div>
+
+        <p class="request-note">Submissions are processed by FormSubmit and emailed to Derek. You may be asked to complete a CAPTCHA before sending; a confirmation page follows submission. Please do not include confidential information. Prefer email, or having trouble? Contact <a href="mailto:Dhunt22@ASU.edu">Dhunt22@ASU.edu</a>.</p>
+    </main>
+</body>
+</html>
