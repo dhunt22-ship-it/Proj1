@@ -32,3 +32,39 @@ body {
 .crm-card {
     grid-column: 2 / 3; /* Places it in the center column */
 }
+
+.project-section-heading {
+    margin-bottom: 2rem;
+}
+
+.project-heading-accent {
+    color: #7dd3fc;
+}
+
+.victorian-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    width: min(100%, 44rem);
+    margin: 0 auto 0.75rem;
+    color: #cbd5e1;
+}
+
+.victorian-divider::before,
+.victorian-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, currentColor);
+}
+
+.victorian-divider::after {
+    transform: scaleX(-1);
+}
+
+.victorian-divider svg {
+    display: block;
+    flex: 0 0 auto;
+    width: 6.5rem;
+    height: 2rem;
+}
