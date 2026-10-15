@@ -1,209 +1,101 @@
 "use strict";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
-const CAL_COM_LINK = "YOUR_USERNAME/YOUR_EVENT_SLUG";
+"use strict";
 
-const form = document.getElementById("demo-form");
-const fields = document.getElementById("form-fields");
-const status = document.getElementById("form-status");
-const submitLabel = document.getElementById("submit-label");
-const spinner = document.getElementById("submit-spinner");
-const leadCapture = document.getElementById("lead-capture");
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnpjopzb";
+const CAL_COM_URL = "https://cal.com/derek-hunt-2fybwu/employment-interview";
+const forms = [
+  document.getElementById("demo-form"),
+  document.getElementById("interview-form")
+];
+const requestChoices = [
+  document.getElementById("demo-choice"),
+  document.getElementById("interview-choice")
+];
 const scheduling = document.getElementById("scheduling");
-const calendarStatus = document.getElementById("calendar-status");
-const bookingFallback = document.getElementById("booking-fallback");
+const calendar = document.getElementById("cal-embed");
+let requestAccepted = false;
 
-let submitting = false;
-let accepted = false;
-
-function configurationReady() {
-  const endpoint = new URL(FORMSPREE_ENDPOINT);
-  return (
-    endpoint.origin === "https://formspree.io" &&
-    /^\/f\/[a-zA-Z0-9]+$/.test(endpoint.pathname) &&
-    !FORMSPREE_ENDPOINT.includes("YOUR_") &&
-    !CAL_COM_LINK.includes("YOUR_") &&
-    /^[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_-]+)+$/.test(CAL_COM_LINK)
-  );
-}
-
-function setSubmitting(pending) {
-  submitting = pending;
-  fields.disabled = pending;
-  form.setAttribute("aria-busy", String(pending));
-  spinner.hidden = !pending;
-  submitLabel.textContent = pending
-    ? "Submitting request…"
-    : "Request Private Demo →";
-}
-
-function showFormError(message) {
-  status.classList.add("error");
-  status.textContent = message;
-}
-
-function loadCal() {
-  return new Promise((resolve, reject) => {
-    if (window.Cal) {
-      resolve();
-      return;
-    }
-
-    const queue = [];
-
-    window.Cal = function (...command) {
-      queue.push(command);
-    };
-
-    window.Cal.q = queue;
-    window.Cal.ns = {};
-    window.Cal.loaded = true;
-
-    window.Cal("init", { origin: "https://cal.com" });
-
-    const script = document.createElement("script");
-    script.src = "https://app.cal.com/embed/embed.js";
-    script.async = true;
-
-    const timer = window.setTimeout(() => {
-      reject(new Error("Calendar loading timed out."));
-    }, 15000);
-
-    script.onload = () => {
-      window.clearTimeout(timer);
-      resolve();
-    };
-
-    script.onerror = () => {
-      window.clearTimeout(timer);
-      reject(new Error("Calendar script could not load."));
-    };
-
-    document.head.appendChild(script);
+requestChoices.forEach((choice, selectedIndex) => {
+  choice.addEventListener("click", () => {
+    requestChoices.forEach((item, index) => {
+      item.setAttribute("aria-pressed", String(index === selectedIndex));
+      forms[index].hidden = index !== selectedIndex;
+    });
   });
-}
+});
 
-async function showScheduling(details) {
-  leadCapture.hidden = true;
-  scheduling.hidden = false;
+forms.forEach((form) => {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (requestAccepted || !form.reportValidity()) return;
 
-  document.getElementById("confirmation-heading").focus();
-
-  bookingFallback.href = `https://cal.com/${CAL_COM_LINK}`;
-
-  calendarStatus.textContent = "Loading scheduling…";
-
-  try {
-    await loadCal();
-
-    window.Cal("inline", {
-      elementOrSelector: "#cal-inline",
-      calLink: CAL_COM_LINK,
-      config: {
-        name: details.name,
-        email: details.email,
-        theme: "dark",
-        layout: "month_view"
-      }
-    });
-
-    window.Cal("ui", {
-      theme: "dark",
-      layout: "month_view",
-      hideEventTypeDetails: false,
-      cssVarsPerTheme: {
-        dark: { "cal-brand": "#059669" },
-        light: { "cal-brand": "#059669" }
-      }
-    });
-
-    calendarStatus.textContent =
-      "Select an available time below. If the calendar does not appear, use the scheduling link.";
-  } catch {
-    calendarStatus.classList.add("error");
-    calendarStatus.textContent =
-      "Your request was received, but the calendar could not load. Please use the scheduling link below.";
-  }
-}
-
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  if (submitting || accepted) return;
-
-  status.classList.remove("error");
-  status.textContent = "";
-
-  try {
-    if (!configurationReady()) {
-      showFormError(
-        "Demo requests are not configured yet. Please email Dhunt22@ASU.edu to arrange a walkthrough."
-      );
-      return;
-    }
-  } catch {
-    showFormError(
-      "Demo requests are not configured correctly. Please email Dhunt22@ASU.edu."
-    );
-    return;
-  }
-
-  for (const fieldName of ["name", "email", "company", "message"]) {
-    const input = form.elements.namedItem(fieldName);
-    input.value = input.value.trim();
-  }
-
-  if (!form.reportValidity()) return;
-
-  const data = new FormData(form);
-  const details = {
-    name: String(data.get("name") || ""),
-    email: String(data.get("email") || "")
-  };
-
-  setSubmitting(true);
-  status.textContent = "Sending your private demo request…";
-
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 20000);
-
-  try {
-    const response = await fetch(FORMSPREE_ENDPOINT, {
-      method: "POST",
-      body: data,
-      headers: { Accept: "application/json" },
-      signal: controller.signal
-    });
-
-    if (!response.ok) {
-      const result = await response.json().catch(() => null);
-      const messages = Array.isArray(result?.errors)
-        ? result.errors
-            .map((error) => error?.message)
-            .filter((message) => typeof message === "string")
-        : [];
-
-      throw new Error(
-        messages.join(" ") ||
-        "Your request was not accepted. Please try again or email Dhunt22@ASU.edu."
-      );
+    const formData = new FormData(form);
+    for (const [name, value] of formData.entries()) {
+      if (typeof value === "string") formData.set(name, value.trim());
     }
 
-    accepted = true;
-    status.textContent = "";
+    const status = form.querySelector(".form-status");
+    const fieldset = form.querySelector("fieldset");
+    const submitButton = form.querySelector("[type=submit]");
+    const submitLabel = submitButton.textContent;
+    fieldset.disabled = true;
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending request…";
+    status.classList.remove("error");
+    status.textContent = "Sending your request…";
+    form.setAttribute("aria-busy", "true");
 
-  } catch (error) {
-    showFormError(
-      error.name === "AbortError" || error instanceof TypeError
-        ? "We could not confirm receipt. Your request may have reached us. Please contact Dhunt22@ASU.edu or retry."
-        : error.message
-    );
-  } finally {
-    window.clearTimeout(timeout);
-    setSubmitting(false);
-  }
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      });
 
-  if (accepted) {
-    await showScheduling(details);
-  }
+      if (response.status !== 200) {
+        let message = "Your request could not be confirmed. Please try again or email Dhunt22@ASU.edu.";
+        try {
+          const result = await response.json();
+          const errors = Array.isArray(result.errors)
+            ? result.errors.map((error) => error.message).filter(Boolean)
+            : [];
+          if (errors.length) message = errors.join(" ");
+        } catch {
+        }
+        throw new Error(message);
+      }
+
+      requestAccepted = true;
+      status.textContent = "Request received. Choose an available time below.";
+      submitButton.textContent = "Request sent";
+      requestChoices.forEach((choice) => {
+        choice.disabled = true;
+      });
+      forms.forEach((item) => {
+        item.querySelector("fieldset").disabled = true;
+        item.querySelector("[type=submit]").disabled = true;
+      });
+
+      const calendarUrl = new URL(CAL_COM_URL);
+      calendarUrl.searchParams.set("embed", "1");
+      calendarUrl.searchParams.set("theme", "dark");
+      calendar.src = calendarUrl.href;
+      scheduling.hidden = false;
+      document.getElementById("schedule-heading").focus();
+      scheduling.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (error) {
+      status.classList.add("error");
+      status.textContent = error instanceof TypeError
+        ? "Unable to reach the request service. Check your connection and try again."
+        : error.message;
+    } finally {
+      form.removeAttribute("aria-busy");
+      if (!requestAccepted) {
+        fieldset.disabled = false;
+        submitButton.disabled = false;
+        submitButton.textContent = submitLabel;
+      }
+    }
+  });
 });

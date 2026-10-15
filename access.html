@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1220">
+    <title>Private Access | Derek J. Hunt</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="access.js" defer></script>
+</head>
+<body class="access-page">
+    <main class="access-shell">
+        <nav class="access-nav" aria-label="Main navigation">
+            <span class="access-brand">Derek J. Hunt</span>
+            <a class="back-link" href="./index.html">← Portfolio</a>
+        </nav>
+
+        <header class="access-heading">
+            <p class="access-eyebrow">Private access</p>
+            <h1>Demo or Interview Request</h1>
+            <p>Choose the request that fits, and share a few details. Scheduling becomes available after your request is received.</p>
+        </header>
+
+        <section class="access-workflow" aria-label="Access request">
+            <aside class="request-menu">
+                <h2>Choose a request</h2>
+                <div class="request-options" aria-label="Request type">
+                    <button class="request-choice" id="demo-choice" type="button" aria-pressed="true" aria-controls="demo-form">Demo Request</button>
+                    <button class="request-choice" id="interview-choice" type="button" aria-pressed="false" aria-controls="interview-form">Interview Request</button>
+                </div>
+            </aside>
+
+            <div class="request-form-area">
+                <form class="request-form" id="demo-form" action="https://formspree.io/f/mnpjopzb" method="post">
+                    <input type="hidden" name="request_type" value="Demo Request">
+                    <input type="hidden" name="_subject" value="1CALL CIP Demo Request">
+                    <h2>Demo Request</h2>
+                    <p class="form-intro">Tell me where to follow up and what you would like to explore.</p>
+                    <fieldset class="access-fields">
+                        <label>Name
+                            <input name="name" autocomplete="name" required>
+                        </label>
+                        <label>Email
+                            <input name="email" type="email" autocomplete="email" required>
+                        </label>
+                        <label class="field-wide">Company or organization
+                            <input name="company" autocomplete="organization">
+                        </label>
+                        <label class="field-wide">What would you like to see?
+                            <textarea name="message" rows="4" required></textarea>
+                        </label>
+                    </fieldset>
+                    <button class="submit-button" type="submit">Send demo request <span aria-hidden="true">→</span></button>
+                    <p class="form-status" role="status" aria-live="polite"></p>
+                </form>
+
+                <form class="request-form" id="interview-form" action="https://formspree.io/f/mnpjopzb" method="post" hidden>
+                    <input type="hidden" name="request_type" value="Interview Request">
+                    <input type="hidden" name="_subject" value="1CALL CIP Interview Request">
+                    <h2>Interview Request</h2>
+                    <p class="form-intro">Share your contact information and a little context for the conversation.</p>
+                    <fieldset class="access-fields">
+                        <label>Name
+                            <input name="name" autocomplete="name" required>
+                        </label>
+                        <label>Email
+                            <input name="email" type="email" autocomplete="email" required>
+                        </label>
+                        <label class="field-wide">Role or organization
+                            <input name="role_or_organization" autocomplete="organization">
+                        </label>
+                        <label class="field-wide">Message
+                            <textarea name="message" rows="4" required></textarea>
+                        </label>
+                    </fieldset>
+                    <button class="submit-button" type="submit">Send interview request <span aria-hidden="true">→</span></button>
+                    <p class="form-status" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+
+        <section class="schedule-panel" id="scheduling" aria-labelledby="schedule-heading" hidden>
+            <h2 id="schedule-heading" tabindex="-1">Request received</h2>
+            <p>Your request was received. Choose an available time below to continue.</p>
+            <iframe class="calendar-frame" id="cal-embed" title="Schedule a demo or interview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <a class="calendar-fallback" href="https://cal.com/derek-hunt-2fybwu/employment-interview" target="_blank" rel="noopener noreferrer">Open scheduling in a new tab</a>
+        </section>
+    </main>
+</body>
+</html>

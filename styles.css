@@ -1,9 +1,321 @@
 body {
-    background-color: #0b0e14;
+    background-color: #0b1220;
     color: #ffffff;
-    font-family: sans-serif;
+    font-family: "Aptos", "Segoe UI", sans-serif;
     margin: 0;
     padding: 40px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.section-heading::before,
+.section-heading::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, transparent, #334155, #3b82f6);
+}
+
+.section-heading::after {
+    transform: rotate(180deg);
+}
+
+.section-heading span::before,
+.section-heading span::after {
+    content: "✦";
+    margin: 0 0.6em;
+    color: #60a5fa;
+    font-size: 0.55em;
+    vertical-align: 0.18em;
+}
+
+.snap-pop-card,
+.snap-pop-card-featured {
+    border: 1px solid rgba(100, 116, 139, 0.4);
+    box-shadow: 0 18px 45px rgba(2, 6, 23, 0.2);
+    transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.snap-pop-card:hover,
+.snap-pop-card-featured:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96, 165, 250, 0.65);
+}
+
+.professional-projects {
+    display: grid;
+    grid-template-columns: minmax(0, 36rem);
+    justify-content: center;
+}
+
+.project-cta {
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(52, 211, 153, 0.5);
+    border-radius: 0.5rem;
+    background: rgba(6, 78, 59, 0.35);
+    text-decoration: none;
+}
+
+.access-page {
+    min-height: 100vh;
+    padding: 2rem clamp(1rem, 4vw, 3rem) 4rem;
+    background: #0b1220;
+}
+
+.access-shell {
+    width: min(100%, 68rem);
+    margin: 0 auto;
+}
+
+.access-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #263449;
+}
+
+.access-brand {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.back-link,
+.calendar-fallback {
+    color: #93c5fd;
+    text-decoration: none;
+}
+
+.access-heading {
+    margin: 3rem auto 2rem;
+    text-align: center;
+}
+
+.access-heading h1 {
+    margin: 0;
+    color: #f8fafc;
+    font-size: 3rem;
+}
+
+.access-heading p {
+    max-width: 38rem;
+    margin: 0.9rem auto 0;
+    color: #aab8ca;
+    line-height: 1.65;
+}
+
+.access-eyebrow {
+    color: #6ee7b7 !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.access-workflow {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.5fr);
+    overflow: hidden;
+    border: 1px solid #2c3b52;
+    border-radius: 0.75rem;
+    background: #111c2e;
+}
+
+.request-menu {
+    padding: 1.5rem;
+    border-right: 1px solid #2c3b52;
+    background: #0e192a;
+}
+
+.request-options {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.request-choice {
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: #b8c5d6;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 650;
+    text-align: left;
+}
+
+.request-choice[aria-pressed="true"],
+.request-choice:hover {
+    border-color: #31537a;
+    background: #172942;
+    color: #eff6ff;
+}
+
+.request-form-area {
+    min-width: 0;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.request-form h2,
+.schedule-panel h2 {
+    margin: 0 0 0.5rem;
+    color: #f8fafc;
+    font-size: 1.4rem;
+}
+
+.form-intro,
+.schedule-panel p {
+    color: #aab8ca;
+    line-height: 1.6;
+}
+
+.access-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.access-fields label {
+    display: grid;
+    gap: 0.45rem;
+    color: #dbe5f1;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.access-fields .field-wide {
+    grid-column: 1 / -1;
+}
+
+.access-fields input,
+.access-fields textarea {
+    width: 100%;
+    min-height: 2.9rem;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid #3a4b63;
+    border-radius: 0.4rem;
+    background: #0b1422;
+    color: #f8fafc;
+    font: inherit;
+}
+
+.access-fields textarea {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+.submit-button {
+    min-height: 2.9rem;
+    margin-top: 1.25rem;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid #059669;
+    border-radius: 0.45rem;
+    background: #047857;
+    color: #f0fdf4;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.form-status {
+    min-height: 1.5rem;
+    margin: 0.9rem 0 0;
+    color: #a7f3d0;
+    line-height: 1.5;
+}
+
+.form-status.error {
+    color: #fca5a5;
+}
+
+.schedule-panel {
+    margin-top: 2rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid #2c3b52;
+    border-radius: 0.75rem;
+    background: #111c2e;
+}
+
+.calendar-frame {
+    display: block;
+    width: 100%;
+    height: min(78vh, 48rem);
+    min-height: 34rem;
+    margin-top: 1.25rem;
+    border: 1px solid #334155;
+    border-radius: 0.5rem;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 0;
+    }
+
+    .section-heading {
+        gap: 0.25rem;
+        font-size: 1.35rem;
+    }
+
+    .section-heading span::before,
+    .section-heading span::after {
+        margin: 0 0.25em;
+    }
+
+    .access-page {
+        padding: 1.25rem 1rem 2rem;
+    }
+
+    .access-workflow {
+        grid-template-columns: 1fr;
+    }
+
+    .access-heading h1 {
+        font-size: 2rem;
+    }
+
+    .request-menu {
+        border-right: 0;
+        border-bottom: 1px solid #2c3b52;
+    }
+
+    .request-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .request-choice {
+        padding: 0.75rem 0.4rem;
+        text-align: center;
+    }
+
+    .access-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .access-fields .field-wide {
+        grid-column: auto;
+    }
 }
 
 .portfolio-container {
